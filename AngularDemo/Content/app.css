@@ -1,0 +1,20 @@
+﻿.hoverwell:hover {
+    background-color: #52575c;
+    cursor: pointer;
+}
+
+select,textarea {
+    color:  #52575c;
+}
+.votingButton {
+    padding-left: 6px;
+    cursor: pointer;
+}
+[ng\:cloak],[ng-cloak], [data-ng-cloak],[x-ng-cloak], .ng-cloak, .x-ng-cloak {
+
+    display: none;
+}
+
+.blue 
+{ display: blue;
+}

@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html ng-app="">
+    <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-sanitize.js"></script>
+        <script src="Scripts/app/app.js"></script>
+        <title>Demo Application - Using Controller</title>
+    </head>
+<body ng-cloak>
+    <div class="container">
+        
+        <div class="navbar">
+            <div >
+                <ul class="nav">
+                </ul>
+            </div>
+        </div>
+
+        <div ng-controller="EventCtrl">
+            <img ng-src="{{event.imageURL}}" alt="{{event.name}}"/>
+            <div class="row">
+                <div>
+                    <h2>{{event.name | uppercase}}</h2>
+                    <!--<h2 ng-style="myStyle" ng-bind-template="{{event.name}} {{event.date}}"></h2>-->
+                    <!--<h2 ng-class="myClass" ng-bind-template="{{event.name}} {{event.date}}"></h2>-->
+                </div>
+            </div>
+            
+            <button type="button" ng-disabled="buttonDisabled">Disabled</button>
+            
+            <div ng-non-bindable>{{1+4}}</div>
+            
+            <!--{{[1,2,5][2]}}-->
+          
+            <div ng-bind-html-unsafe="snippet">Some Title</div>
+            <div ng-bind-html="snippet">Some Title</div>
+            
+            <h2 ng-show="boolValue">Show this</h2>
+            <h2 ng-hide="boolValue">Hide this</h2>
+
+            <div class="row">
+                <div>
+                    <div><strong>Date:</strong> {{event.date | date:'mediumDate'}} </div>
+                    <div><strong>Time:</strong> {{event.time}} </div>
+                </div>
+                <div> 
+                    <address>
+                        <strong>Address:</strong><br/>
+                        {{event.location.address}}<br/>
+                        {{event.location.city}}
+                    </address>
+                </div>
+            </div>
+            
+            <div>{{3.1345223522 | number:2}}</div>
+            <div>{{ 50 | currency}} </div>
+            
+            <div>{{ 3 | number:2}}</div>
+            
+
+            <hr/>
+            <h3>Repeating info</h3>
+            <ul>
+                <li ng-repeat="session in event.sessions | orderBy:sortorder">
+
+                    <div>
+                        <h4> {{session.name}}</h4>
+
+                    </div>
+                    <div>
+                        Vote Count: {{session.UpVoteCount}} <br />
+                        <button type="button" ng-click="upVoteSession(session)">Up-Vote</button>
+                        <button type="button" ng-click="downVoteSession(session)">Down-Vote</button>
+                    </div>
+                </li>
+            </ul>
+        </div>  
+    </div>
+    
+    <script>
+        function EventCtrl($scope) {
+
+            $scope.boolValue = true;
+
+            $scope.sortorder = "-UpVoteCount";
+
+            $scope.myStyle = { color: 'teal' };
+
+            $scope.buttonDisabled = true;
+
+            $scope.myClass = "blue";
+
+            $scope.event= {
+                name: 'Angular Boot Camp',
+                date: '1234567890123',
+                time: '14:45',
+                location:
+                {
+                    address: 'Manjalpur',
+                    city: 'Baroda',
+                },
+                imageURL: '/Image/01-11-2014 15-06-07.png',
+                sessions: [
+                    {
+                        name: 'Test1',
+                        UpVoteCount: 0
+                    },
+                     {
+                         name: 'Test2',
+                         UpVoteCount: 0
+                     },
+                      {
+                          name: 'Test3',
+                          UpVoteCount: 0
+                      }
+                ]
+            }
+
+            $scope.upVoteSession = function(session) {
+                session.UpVoteCount++;
+            };
+
+            $scope.downVoteSession = function(session) {
+                session.UpVoteCount--;
+            };
+
+            $scope.snippet = '<span style="color:red">Hello</span>';
+           
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app>
+    <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+        <title>Demo application - Basic Angular</title>
+    </head>
+    <body>
+        
+        <h1 ng-controller="DisplayMessage">{{TestMessage}}</h1>
+        
+        <script>
+            function DisplayMessage($scope) {
+                $scope.TestMessage = "Hello !!";
+            }
+        </script>
+       
+    
+    </body>
+</html>
